@@ -4,6 +4,8 @@ This is forked from the [official repo](https://github.com/HazyResearch/fm_data_
 
 We aim to evaluate fairness of the results of using foundation models for data imputation and maybe error detection.
 
+For this purpose, we extend this module with a subset of the [`folktables`](https://github.com/socialfoundations/folktables) dataset.
+
 ## Install
 
 Install:

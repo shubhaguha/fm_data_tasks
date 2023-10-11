@@ -15,6 +15,7 @@ DATA2TASK = {
     f"{DATASET_PATH}/entity_matching/structured/Walmart-Amazon": "entity_matching",
     f"{DATASET_PATH}/data_imputation/Buy": "data_imputation",
     f"{DATASET_PATH}/data_imputation/Restaurant": "data_imputation",
+    f"{DATASET_PATH}/data_imputation/ACS": "data_imputation",
     f"{DATASET_PATH}/error_detection/Hospital": "error_detection_spelling",
     f"{DATASET_PATH}/error_detection/Adult": "error_detection",
     f"{DATASET_PATH}/schema_matching/Synthea": "schema_matching",
@@ -23,6 +24,7 @@ DATA2TASK = {
 IMPUTE_COLS = {
     f"{DATASET_PATH}/data_imputation/Buy": "manufacturer",
     f"{DATASET_PATH}/data_imputation/Restaurant": "city",
+    f"{DATASET_PATH}/data_imputation/ACS": "SCHL",  # Explained in Appendix B of https://arxiv.org/pdf/2108.04884.pdf (page 19)
 }
 
 MATCH_PROD_NAME = {
@@ -51,6 +53,7 @@ DATA2DROPCOLS = {
     ],
     f"{DATASET_PATH}/data_imputation/Buy": [],
     f"{DATASET_PATH}/data_imputation/Restaurant": [],
+    f"{DATASET_PATH}/data_imputation/ACS": [],
     f"{DATASET_PATH}/error_detection/Hospital": [],
     f"{DATASET_PATH}/error_detection/Adult": [],
     f"{DATASET_PATH}/schema_matching/Synthea": ["des1", "des2", "d1", "d2", "d3", "d4"],
@@ -82,6 +85,7 @@ DATA2COLREMAP = {
     f"{DATASET_PATH}/entity_matching/structured/Walmart-Amazon": {},
     f"{DATASET_PATH}/data_imputation/Buy": {},
     f"{DATASET_PATH}/data_imputation/Restaurant": {},
+    f"{DATASET_PATH}/data_imputation/ACS": {},
     f"{DATASET_PATH}/error_detection/Hospital": {},
     f"{DATASET_PATH}/error_detection/Adult": {},
     f"{DATASET_PATH}/schema_matching/Synthea": {
@@ -102,6 +106,7 @@ DATA2INSTRUCT = {
     f"{DATASET_PATH}/entity_matching/structured/Walmart-Amazon": "Are Product A and Product B the same? Yes or No? ",
     f"{DATASET_PATH}/data_imputation/Buy": "Who is the manufacturer? apple, sony, lg electronics? ",
     f"{DATASET_PATH}/data_imputation/Restaurant": "What is the city? san fransisco, new york, denver? ",
+    f"{DATASET_PATH}/data_imputation/ACS": "What is the SCHL? up to and including 21, or more than 21? ",
     f"{DATASET_PATH}/error_detection/Hospital": "Is there a x spelling error? Yes or No? ",
     f"{DATASET_PATH}/error_detection/Hospital": "Is there a x spelling error? Yes or No? ",
     f"{DATASET_PATH}/schema_matching/Synthea": "Are A and B semantically equal?\n\n",
@@ -118,6 +123,7 @@ DATA2SUFFIX = {
     f"{DATASET_PATH}/entity_matching/structured/Walmart-Amazon": " Are A and B the Same?",
     f"{DATASET_PATH}/data_imputation/Buy": " Who is the manufacturer?",
     f"{DATASET_PATH}/data_imputation/Restaurant": " What is the city?",
+    f"{DATASET_PATH}/data_imputation/SCHL": " What is the SCHL?",
     f"{DATASET_PATH}/error_detection/Hospital": "?",
     f"{DATASET_PATH}/schema_matching/Synthea": "Are A and B the same? Yes or No?",
     f"{DATASET_PATH}/error_detection/Adult": "? ",
@@ -134,6 +140,7 @@ DATA2EXAMPLE_SUBKEY_ATTR = {
     f"{DATASET_PATH}/entity_matching/structured/Walmart-Amazon": None,
     f"{DATASET_PATH}/data_imputation/Buy": None,
     f"{DATASET_PATH}/data_imputation/Restaurant": None,
+    f"{DATASET_PATH}/data_imputation/ACS": None,
     f"{DATASET_PATH}/error_detection/Hospital": "col_name",
     f"{DATASET_PATH}/schema_matching/Synthea": "left",
     f"{DATASET_PATH}/error_detection/Adult": "col_name",
@@ -654,6 +661,7 @@ PREFIXES = {
     },
     f"{DATASET_PATH}/data_imputation/Buy": "name: Transcend 8GB Compact Flash Card (133x) - TS8GCF133. description: Transcend 8GB CompactFlash Card (133x). Who is the manufacturer? TRANSCEND INFORMATION\n\nname: LG 42LG30 42' LCD TV. description: LG 42LG30 42' LCD HDTV - 12,000:1 Dynamic Contrast Ratio - Invisible Speaker. Who is the manufacturer? LG Electronics\n\nname: Speck Products SeeThru Case for Apple MacBook Air - MBA-PNK-SEE. description: Plastic - Pink. Who is the manufacturer? Speck Products\n\nname: Peerless Universal Tilt Wall Mount. description: Peerless Smart Mount ST660P Universal Tilt Wall Mount for 37' to 60' Screens (Black) up to 200lbs. Who is the manufacturer? Peerless\n\nname: Apple Time Capsule Network Hard Drive - MB277LL/A. description: 1TB - Type A USB. Who is the manufacturer? Apple\n\nname: Sirius SUPH1 Sirius Universal Home Kit. description: Sirius Satellite Radio Receiver. Who is the manufacturer? Sirius\n\nname: OmniMount TV Top Shelf Mount. description: OmniMount CCH1B Set-Top Center-Channel Shelf. Who is the manufacturer? OMNIMOUNT SYSTEMS, INC\n\nname: Monster Cable iFreePlay Cordless Headphone - AI SH HPHONE. description: Connectivity: Wireless - Stereo - Behind-the-neck. Who is the manufacturer? Monster\n\nname: Pure Digital Flip Mino Digital Camcorder - F360B. description: Flip Video Mino 60 min Black. Who is the manufacturer? Pure Digital Technol\n\nname: Elgato EyeTV Hybrid Analog/Digital TV Tuner Stick - 10020630. description: Elgato EyeTV Hybrid TV Tuner Stick for Analog and HDTV Reception - USB. manufacturer? ELGATO SYSTEMS\n",
     f"{DATASET_PATH}/data_imputation/Restaurant": "name: oceana. addr: 55 e. 54th st.. phone: 212/759-5941. type: seafood. What is the city? new york\n\nname: oceana. addr: 55 e. 54th st.. phone: 212-759-5941. type: seafood. What is the city? new york city\n",
+    f"{DATASET_PATH}/data_imputation/ACS": "TODO\n",  # TODO
     f"{DATASET_PATH}/error_detection/Hospital": {
         "EmergencyService": "Is there a x spelling error in EmergencyService: nan? No\n\nIs there a x spelling error in EmergencyService: yes? No\n\nIs there a x spelling error in EmergencyService: yes? No\n\nIs there a x spelling error in EmergencyService: yex? Yes\n",
         "City": "Is there a x spelling error in City: nan? No\n\nIs there a x spelling error in City: birmingham? No\n\nIs there a x spelling error in City: sheffield? No\n\nIs there a x spelling error in City: birminghxm? Yes\n",
