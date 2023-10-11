@@ -45,7 +45,7 @@ export DATASET_PATH="$PWD/data/datasets"
 # Run
 To run inference, use
 ```
-poetry run python3 -m fm_data_tasks.run_infernece --help
+poetry run python3 -m fm_data_tasks.run_inference --help
 ```
 To see options. Importantly, the `--dry_run` flag will print out examples but not query OpenAI.
 
@@ -53,7 +53,7 @@ We cache all inputs/outputs in sqlite for the ability to rerun without having to
 
 To see a full set of scripts with output results for 200 examples samples of each dataset, see [scripts/run_results.zsh](scripts/run_results.zsh).
 
-Some examples are a follows.
+Some examples are as follows.
 
 To dry run run 10 examples for Fodors Zagats entity matching with random selection of 3 examples to add to the prompt,
 ```
